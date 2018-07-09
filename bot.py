@@ -5,6 +5,7 @@ import re
 import os
 import json
 import time
+import ast
 
 wftWeaponTitleModelFile = ''
 wftWeaponDescModelFile = ''
@@ -32,7 +33,10 @@ subredditNames = ['HellerBotTest']
 postsAlreadyRepliedTo = []
 
 if(os.path.isfile('posts_already_replied_to.txt')):
-    postsAlreadyRepliedTo = json.load(open('posts_already_replied_to.txt', 'r'))
+    postsText = open('posts_already_replied_to.txt', 'r').read()
+    postJsonTextList = postsText.split(';')
+    for postJsonText in postJsonTextList:
+        postsAlreadyRepliedTo.append(ast.literal_eval(postJsonText))
     print(postsAlreadyRepliedTo)
 
 def replyToPost(post):
@@ -58,12 +62,10 @@ def replyToPost(post):
 
 def writeToFile():
     with open('posts_already_replied_to.txt', 'w+') as f:
-        f.write('[')
         for (i,postJson) in enumerate(postsAlreadyRepliedTo):
                 f.write(str(postJson))
-                if(i != 0):
-                    f.write(',')
-        f.write(']')
+                if(i != (len(postsAlreadyRepliedTo) - 1)):
+                    f.write(';')
         
 def runBot():
     while(True):
