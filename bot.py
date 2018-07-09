@@ -60,10 +60,11 @@ def writeToFile():
     with open('posts_already_replied_to.txt', 'w+') as f:
         f.write('[')
         for (i,postJson) in enumerate(postsAlreadyRepliedTo):
-                f.write(postJson)
+                f.write(str(postJson))
                 if(i != 0):
                     f.write(',')
         f.write(']')
+        
 def runBot():
     while(True):
         for subredditName in subredditNames:

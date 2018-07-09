@@ -4,6 +4,8 @@ This is a bot which generates item descriptions for Destiny using Markov Chains.
 
 It has scripts included for scraping the data and generating Markov models from it, so it's easy to implement them in anything. It currently scrapes only the weapon data. 
 
+Made using [Markovify](https://github.com/jsvine/markovify)
+
 ## Setup
 
 The scripts need Python 3.6 to run, and you need to following installed too:
